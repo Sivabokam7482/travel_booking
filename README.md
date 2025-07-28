@@ -44,7 +44,7 @@ DATABASES = {
         'USER': 'your_db_user',
         'PASSWORD': 'your_db_password',
         'HOST': 'your_db_host',
-        'PORT': 'your_db_port',
+        'PORT': 3306,
     }
 }
 ```
