@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to TravelBook{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Explore the World with TravelBook</h1>
+    <p class="lead text-muted">Discover destinations, book your travels, and manage your journeys – all in one place.</p>
+    <a href="{% url 'travel_list' %}" class="btn btn-lg btn-outline-primary mt-3">Browse Tours</a>
+</div>
+
+<!-- Featured Tours -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for travel in featured_travels %}
+    <div class="col">
+        <div class="card hover-effect h-100 shadow-sm">
+            <img src="{{ travel.image_url }}" class="card-img-top" alt="{{ travel.destination }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ travel.destination }}</h5>
+                <p class="card-text text-muted">{{ travel.description|truncatewords:20 }}</p>
+            </div>
+            <div class="card-footer bg-transparent border-top-0">
+                <a href="{% url 'book_travel' travel.id %}" class="btn btn-outline-success w-100">Book Now</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col">
+        <div class="alert alert-warning text-center w-100">
+            No featured travels available right now. Check back soon!
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

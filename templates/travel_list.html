@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Available Travels{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="text-center mb-4 text-primary">Available Travel Options</h2>
+
+    <!-- Filter Form -->
+    <form method="get" class="row g-3 align-items-end bg-white p-3 rounded shadow-sm">
+        <div class="col-md-3">
+            <label for="source" class="form-label">Source</label>
+            <input type="text" name="source" id="source" class="form-control" placeholder="Enter source">
+        </div>
+        <div class="col-md-3">
+            <label for="destination" class="form-label">Destination</label>
+            <input type="text" name="destination" id="destination" class="form-control" placeholder="Enter destination">
+        </div>
+        <div class="col-md-3">
+            <label for="date" class="form-label">Travel Date</label>
+            <input type="date" name="date" id="date" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100">Filter</button>
+        </div>
+    </form>
+
+    <!-- Travel Table -->
+    <div class="table-responsive mt-4">
+        <table class="table table-hover table-bordered bg-white shadow-sm">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Type</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Available Seats</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-center align-middle">
+                {% for travel in travels %}
+                <tr>
+                    <td>{{ travel.type }}</td>
+                    <td>{{ travel.source }}</td>
+                    <td>{{ travel.destination }}</td>
+                    <td>{{ travel.date_time }}</td>
+                    <td>₹{{ travel.price }}</td>
+                    <td>{{ travel.available_seats }}</td>
+                    <td>
+                        <a href="{% url 'book_travel' travel.id %}" class="btn btn-success btn-sm">Book Now</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted">No travels found for the given filters.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

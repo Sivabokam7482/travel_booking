@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Your Travel Bookings</h2>
+
+    {% if bookings %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for booking in bookings %}
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ booking.travel.source }} → {{ booking.travel.destination }}</h5>
+                    <p class="card-text mb-2"><strong>Date & Time:</strong> {{ booking.travel.date_time }}</p>
+                    <p class="card-text"><strong>Seats Booked:</strong> {{ booking.seats }}</p>
+                    <p class="card-text"><strong>Total Price:</strong> ₹{{ booking.total_price }}</p>
+                    <p class="card-text"><strong>Status:</strong> 
+                        <span class="badge bg-success">Confirmed</span>
+                    </p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <small class="text-muted">Booked on: {{ booking.created_at|date:"M d, Y" }}</small>
+                    <!-- Optional Cancel Button -->
+                    <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-outline-danger btn-sm">Cancel</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning text-center mt-5">
+        You have no bookings yet. <a href="{% url 'travel_list' %}" class="alert-link">Browse Travels</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Logged Out{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #f6f9fc, #d9e4f5);
+    }
+
+    .logout-card {
+        max-width: 500px;
+        margin: auto;
+        margin-top: 10vh;
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .logout-icon {
+        font-size: 3rem;
+        color: #198754;
+    }
+</style>
+
+<div class="logout-card">
+    <i class="bi bi-check-circle-fill logout-icon mb-3"></i>
+    <h3>You have been logged out</h3>
+    <p class="text-muted">Thanks for visiting. Come back soon!</p>
+
+    <div class="alert alert-success mt-4" role="alert">
+        Successfully logged out.
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+    <a href="{% url 'home' %}" class="btn btn-success">
+        <i class="bi bi-house-door"></i> Home
+    </a>
+    <a href="{% url 'login' %}" class="btn btn-success">
+        <i class="bi bi-box-arrow-in-right"></i> Back to Login
+    </a>
+</div>
+</div>
+
+{% endblock %}

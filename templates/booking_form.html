@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Book Travel{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Travel Booking Form</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="full_name" class="form-label">Full Name</label>
+                            <input type="text" name="full_name" id="full_name" class="form-control" placeholder="Enter your name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="seats" class="form-label">Number of Seats</label>
+                            <input type="number" name="seats" id="seats" class="form-control" min="1" placeholder="Enter number of seats" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="remarks" class="form-label">Special Requests / Remarks (optional)</label>
+                            <textarea name="remarks" id="remarks" class="form-control" rows="3" placeholder="Any additional info?"></textarea>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">Confirm Booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="{% url 'travel_list' %}" class="btn btn-link">← Back to Travel List</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
